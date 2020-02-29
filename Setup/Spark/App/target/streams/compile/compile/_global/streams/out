@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/skand/Documents/Hadoop/OnlineLearning/Setup/Spark/App/src/main/scala/online_learning.scala:57:7: too many arguments for constructor StreamingLinearRegressionWithSGD: ()org.apache.spark.mllib.regression.StreamingLinearRegressionWithSGD[0m
+[0m[[0m[31merror[0m] [0m[0m      new StreamingLinearRegressionWithSGD(setStepSize = 0.01)[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

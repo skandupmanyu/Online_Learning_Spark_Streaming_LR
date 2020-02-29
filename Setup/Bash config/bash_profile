@@ -1,0 +1,50 @@
+#JAVA HOME
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home'
+
+#SCALA HOME
+export SCALA_HOME=/Applications/scala-2.13.1/
+export PATH=$PATH:$SCALA_HOME/bin
+
+#SPARK HOME
+export SPARK_HOME=/Applications/spark-2.4.4-bin-hadoop2.7/
+export PATH=$PATH:$SPARK_HOME/bin
+
+#FLUME VARIABLES
+export FLUME_VERSION=1.9.0
+export FLUME_HOME=/usr/local/Cellar/flume/1.9.0/libexec
+export FLUME_CONF_DIR=$FLUME_HOME/conf
+export PATH=$FLUME_HOME/bin:$PATH
+
+
+#-----ALIAS-----#
+
+start_hadoop(){
+/usr/local/opt/hadoop/sbin/start-dfs.sh > ~/Documents/Hadoop/logs/start-dfs.log 2>&1 &
+/usr/local/opt/hadoop/sbin/start-yarn.sh > ~/Documents/Hadoop/logs/start-yarn.log 2>&1 &
+}
+
+stop_hadoop(){
+/usr/local/opt/hadoop/sbin/stop-yarn.sh  > ~/Documents/Hadoop/logs/stop-yarn.log 2>&1 &
+/usr/local/opt/hadoop/sbin/stop-dfs.sh > ~/Documents/Hadoop/logs/stop-dfs.log 2>&1 &
+}
+
+start_zookeeper(){
+/usr/local/Cellar/kafka/2.3.1/libexec/bin/zookeeper-server-start.sh /usr/local/Cellar/kafka/2.3.1/libexec/config/zookeeper.properties  > ~/Documents/Hadoop/logs/zookeeper-server-start.log 2>&1 &
+}
+
+start_kafka(){
+/usr/local/Cellar/kafka/2.3.1/libexec//bin/kafka-server-start.sh /usr/local/Cellar/kafka/2.3.1/libexec/config/server.properties > ~/Documents/Hadoop/logs/kafka-server-start.log 2>&1 &
+}
+
+start_flume_agent(){
+rm /usr/local/Cellar/flume/1.9.0/libexec/conf/sql_status_logs/*
+flume-ng agent \
+--conf $FLUME_CONF_DIR \
+--conf-file $FLUME_CONF_DIR/$1 \
+--name a1 -Dflume.root.logger=INFO,console \
+-Xmx2g  > ~/Documents/Hadoop/logs/flume_agent.log 2>&1 &
+}
+
+start_console_consumer(){
+/usr/local/Cellar/kafka/2.3.1/libexec/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic $1
+}
