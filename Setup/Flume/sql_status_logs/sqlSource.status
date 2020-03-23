@@ -1,1 +1,1 @@
-{"SourceName":"r1","URL":"jdbc:mysql:\/\/localhost:3306\/ONLINE_LEARNING_DB?useSSL=false","LastIndex":"240","ColumnsToSelect":"*","Table":"DATA_TABLE"}
+{"SourceName":"r1","URL":"jdbc:mysql:\/\/localhost:3306\/ONLINE_LEARNING_DB?useSSL=false","LastIndex":"850","ColumnsToSelect":"*","Table":"DATA_TABLE"}
