@@ -1,10 +1,5 @@
 cd $(dirname $0)
 
-osascript -e 'tell app "Terminal"
-    do script "python /Users/skandupmanyu/Desktop/Stuff/Analytics/Hadoop/OnlineLearning/Setup/Display/display_regression.py"
-end tell'
-
-osascript -e 'tell app "Terminal"
-    do script "python /Users/skandupmanyu/Desktop/Stuff/Analytics/Hadoop/OnlineLearning/Setup/Display/display_predictions.py"
-end tell'
-
+directory=$(pwd)
+osascript -e "tell app \"terminal\" to do script \"cd $directory; python ./display_regression.py\""
+osascript -e "tell app \"terminal\" to do script \"cd $directory; python ./display_predictions.py\""

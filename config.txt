@@ -1,0 +1,12 @@
+#Hadoop directory
+HADOOP_DIR=/usr/local/opt/hadoop
+
+#Kafka directory
+KAFKA_DIR=/usr/local/Cellar/kafka/2.4.1
+
+#Flume directory
+FLUME_DIR=/usr/local/Cellar/flume/1.9.0_1
+
+#MySQL credentials
+MYSQL_USER=root
+MYSQL_PWD=password
