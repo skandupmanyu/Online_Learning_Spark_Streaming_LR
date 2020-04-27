@@ -1,4 +1,4 @@
 Stopping namenodes on [localhost]
 Stopping datanodes
 Stopping secondary namenodes [Skands-Air]
-2020-04-24 11:21:18,285 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2020-04-24 21:25:43,581 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
