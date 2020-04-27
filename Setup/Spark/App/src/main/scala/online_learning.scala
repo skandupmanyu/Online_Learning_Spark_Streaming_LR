@@ -91,10 +91,15 @@ package OL{
 
       val training_data_store = stream.map(record => record.value).map(line => line.split(",")).cache()
 
+      val conf_file = sc.textFile("config.txt").collect()
+      val conf_key_value = conf_file.map(x => x.split("="))
+      val mysql_user = conf_key_value.find(x => x(0) == "MYSQL_USER").get(1)
+      val mysql_pwd = conf_key_value.find(x => x(0) == "MYSQL_PWD").get(1)
+
       training_data_store.foreachRDD(rdd => {rdd.foreachPartition(partionOfRecords => {
             val url = "jdbc:mysql://localhost:3306/ONLINE_LEARNING_DB?useSSL=false"
-            val user = "root"
-            val password = "password"
+            val user = mysql_user
+            val password = mysql_pwd
             Class.forName("com.mysql.cj.jdbc.Driver")
             val conn = DriverManager.getConnection(url,user,password)
             conn.setAutoCommit(false)
@@ -108,8 +113,8 @@ package OL{
 
       pred.foreachRDD(rdd => {rdd.foreachPartition(partionOfRecords => {
             val url = "jdbc:mysql://localhost:3306/ONLINE_LEARNING_DB?useSSL=false"
-            val user = "root"
-            val password = "password"
+            val user = mysql_user
+            val password = mysql_pwd
             Class.forName("com.mysql.cj.jdbc.Driver")
             val conn = DriverManager.getConnection(url,user,password)
             conn.setAutoCommit(false)
@@ -123,8 +128,8 @@ package OL{
 
       betas.foreachRDD(rdd => {rdd.foreachPartition(partionOfRecords => {
             val url = "jdbc:mysql://localhost:3306/ONLINE_LEARNING_DB?useSSL=false"
-            val user = "root"
-            val password = "password"
+            val user = mysql_user
+            val password = mysql_pwd
             Class.forName("com.mysql.cj.jdbc.Driver")
             val conn = DriverManager.getConnection(url,user,password)
             conn.setAutoCommit(false)

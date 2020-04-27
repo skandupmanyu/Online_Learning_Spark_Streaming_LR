@@ -5,13 +5,22 @@ import plotille
 import pymysql
 import subprocess as sp
 
+with open("../../config.txt") as f:
+  for line in f:
+    if line.startswith("MYSQL_USER"):
+      mysql_user = line.split("=")[1].strip()
+    elif line.startswith("MYSQL_PWD"):
+      mysql_pwd = line.split("=")[1].strip()
+    else:
+      continue
+
 while(True):
 
     conn = pymysql.connect(
     host='localhost',
     port=int(3306),
-    user="root",
-    passwd='password',
+    user=mysql_user,
+    passwd=mysql_pwd,
     db="ONLINE_LEARNING_DB",
     charset='utf8mb4')
 
